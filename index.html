@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Пакет Ушел!</h1>
+            <div class="header-buttons">
+                <button class="balance-button">Баланс: 0₽</button>
+                <button class="history-button" onclick="openHistoryModal()">История заказов</button>
+                <a href="profile.html" class="profile-button">
+                    <svg class="profile-icon" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="welcome-message">
+            <h1>Добро пожаловать, Вы готовы избавиться от мусора?</h1>
+            <button class="order-button" onclick="scrollToPricing()">Сделать заказ</button>
+        </div>
+
+        <div class="referral-section">
+            <div class="referral-container">
+                <span class="referral-text">Реферальная программа:</span>
+                <input type="text" class="referral-input" placeholder="Введите код">
+                <button class="referral-info" onclick="openReferralModal()">Подробнее</button>
+            </div>
+        </div>
+
+        <!-- Модальное окно реферальной программы -->
+        <div id="referralModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeReferralModal()">&times;</span>
+                <h2>Реферальная программа</h2>
+                <div class="referral-info-content">
+                    <h3>Как это работает?</h3>
+                    <p>1. Пригласите друзей использовать наш сервис</p>
+                    <p>2. Получите уникальный реферальный код</p>
+                    <p>3. Когда ваши друзья используют ваш код при первом заказе:</p>
+                    <ul>
+                        <li>Они получают скидку 10% на первый заказ</li>
+                        <li>Вы получаете 100 рублей на свой баланс</li>
+                    </ul>
+                    <h3>Условия программы:</h3>
+                    <ul>
+                        <li>Бонусы начисляются после оплаты заказа рефералом</li>
+                        <li>Реферальный код можно использовать неограниченное количество раз</li>
+                        <li>Накопленные бонусы можно использовать для оплаты заказов</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="how-it-works-section">
+            <h2 class="section-title">Как это работает?</h2>
+            <div class="steps-container">
+                <div class="step-card">
+                    <svg class="step-icon" viewBox="0 0 16 24">
+                        <path d="M14 1H2C1.45 1 1 1.45 1 2v20c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm-1 20H3V3h10v18z"/>
+                        <circle cx="11.5" cy="12" r="1"/>
+                    </svg>
+                    <p class="step-description">Вынесите мусор за дверь</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step-card">
+                    <svg class="step-icon" viewBox="0 0 24 16">
+                        <path d="M19 3h-3V1H3C1.9 1 1 1.9 1 3v10h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-4l-3-6zM6 15.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm12 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM17 8V6h1.5l2 4H17z"/>
+                    </svg>
+                    <p class="step-description">Мы забираем его в удобное вам время</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step-card">
+                    <svg class="step-icon" viewBox="0 0 100 100">
+                      <path d="M50.5,13.5c1.7-2.9,5.9-2.9,7.6,0l13.2,22.8c1.7,2.9-0.4,6.5-3.8,6.5H57.5l5.2,9.1l-8.7,5l-10.4-18h20.7L50.5,13.5z M86.5,62.5c2.9,1.7,2.9,5.9,0,7.6l-22.8,13.2c-2.9,1.7-6.5-0.4-6.5-3.8V72.5l-10.4,6v-10l18-10.4v20.7l-9.1-5.2l5-8.7L86.5,62.5z M13.5,50.5c-2.9-1.7-2.9-5.9,0-7.6l22.8-13.2c2.9-1.7,6.5,0.4,6.5,3.8V42.5l10.4-6v10l-18,10.4V46.3l9.1,5.2l-5,8.7L13.5,50.5z"/>
+                    </svg>
+                    <p class="step-description">Мы заботимся об экологии</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pricing-section" id="pricing">
+            <h2 class="pricing-title">Тарифы</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Единоразовый вывоз</h3>
+                    <div class="price">50 ₽</div>
+                    <p class="price-description">Каждый последующий пакет +25₽</p>
+                    <button class="pricing-button" onclick="openModal('single')">Сделать заказ</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Еженедельный вывоз</h3>
+                    <div class="price">449 ₽</div>
+                    <p class="price-description">Всю неделю каждый второй день</p>
+                    <button class="pricing-button" onclick="openModal('weekly')">Сделать заказ</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Ежемесячный вывоз</h3>
+                    <div class="price">849 ₽</div>
+                    <p class="price-description">Весь месяц каждый второй день</p>
+                    <button class="pricing-button" onclick="openModal('monthly')">Сделать заказ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальные окна для разных тарифов -->
+    <div id="singleModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('single')">&times;</span>
+            <h2>Заказ единоразового вывоза</h2>
+            <form id="singleForm" class="order-form">
+                <div class="form-group">
+                    <label for="singleAddress">Адрес:</label>
+                    <input type="text" id="singleAddress" required 
+                           placeholder="Улица, дом, корпус, подъезд, этаж, квартира">
+                </div>
+                <div class="form-group">
+                    <label for="singleDate">Дата вывоза:</label>
+                    <input type="date" id="singleDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="singleTime">Время вывоза:</label>
+                    <input type="time" id="singleTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="singleIntercom">Код домофона:</label>
+                    <input type="text" id="singleIntercom" 
+                           pattern="[0-9*#]+" 
+                           title="Только цифры, * и #"
+                           placeholder="Например: 1234#">
+                </div>
+                <div class="form-group">
+                    <label for="singleVolume">Объем мусора (м³):</label>
+                    <input type="number" id="singleVolume" min="1" required onchange="calculateSinglePrice()">
+                </div>
+                <div class="price-calculation">
+                    <p>Стоимость: <span id="singlePriceDisplay">50</span> ₽</p>
+                    <p class="price-description">50₽ за первый пакет + 25₽ за каждый следующий</p>
+                </div>
+                <button type="submit" class="submit-button">Подтвердить заказ</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="weeklyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('weekly')">&times;</span>
+            <h2>Заказ еженедельного вывоза</h2>
+            <form id="weeklyForm" class="order-form">
+                <div class="form-group">
+                    <label for="weeklyAddress">Адрес:</label>
+                    <input type="text" id="weeklyAddress" required 
+                           placeholder="Улица, дом, корпус, подъезд, этаж, квартира">
+                </div>
+                <div class="form-group">
+                    <label for="weeklyStartDate">Дата начала:</label>
+                    <input type="date" id="weeklyStartDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="weeklyTime">Время вывоза:</label>
+                    <input type="time" id="weeklyTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="weeklyIntercom">Код домофона:</label>
+                    <input type="text" id="weeklyIntercom" 
+                           pattern="[0-9*#]+" 
+                           title="Только цифры, * и #"
+                           placeholder="Например: 1234#">
+                </div>
+                <button type="submit" class="submit-button">Подтвердить заказ</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="monthlyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('monthly')">&times;</span>
+            <h2>Заказ ежемесячного вывоза</h2>
+            <form id="monthlyForm" class="order-form">
+                <div class="form-group">
+                    <label for="monthlyAddress">Адрес:</label>
+                    <input type="text" id="monthlyAddress" required 
+                           placeholder="Улица, дом, корпус, подъезд, этаж, квартира">
+                </div>
+                <div class="form-group">
+                    <label for="monthlyStartDate">Дата начала:</label>
+                    <input type="date" id="monthlyStartDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="monthlyTime">Время вывоза:</label>
+                    <input type="time" id="monthlyTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="monthlyIntercom">Код домофона:</label>
+                    <input type="text" id="monthlyIntercom" 
+                           pattern="[0-9*#]+" 
+                           title="Только цифры, * и #"
+                           placeholder="Например: 1234#">
+                </div>
+                <button type="submit" class="submit-button">Подтвердить заказ</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно истории -->
+    <div id="historyModal" class="modal">
+        <div class="modal-content history-content">
+            <span class="close-button" onclick="closeHistoryModal()">&times;</span>
+            <h2>История заказов</h2>
+            <div class="orders-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Адрес</th>
+                            <th>Пакеты</th>
+                            <th>Стоимость</th>
+                            <th>Дата и время</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersList">
+                        <!-- Здесь будут отображаться заказы -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>Спасибо что выбираете нас!</p>
+            <a href="https://t.me/TrashHelperBot" target="_blank" class="telegram-link">@TrashHelperBot</a>
+            <button class="privacy-button" onclick="openPrivacyModal()">Политика конфиденциальности</button>
+        </div>
+    </footer>
+
+    <!-- Модальное окно политики конфиденциальности -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content privacy-content">
+            <span class="close-button" onclick="closePrivacyModal()">&times;</span>
+            <h2>Политика конфиденциальности</h2>
+            <div class="privacy-text">
+                <h3>1. Введение</h3>
+                <p>Компания Пакет Ушел ценит вашу конфиденциальность и стремится защищать ваши персональные данные. Настоящая Политика конфиденциальности описывает, как мы собираем, используем, храним и защищаем информацию, которую вы предоставляете при использовании сервиса «МусорGo» (далее — «Сервис»).</p>
+
+                <h3>2. Какие данные мы собираем?</h3>
+                <p>Для предоставления услуг мы можем запрашивать и обрабатывать следующие персональные данные:</p>
+                <ul>
+                    <li>Имя и фамилия – для идентификации пользователя и персонализации сервиса.</li>
+                    <li>Номер телефона – для связи, подтверждения заказов и уведомлений.</li>
+                    <li>Адрес – для определения места вывоза мусора и расчета стоимости услуг.</li>
+                    <li>Данные банковской карты (номер, срок действия, CVV/CVC) – для оплаты услуг.</li>
+                </ul>
+
+                <h3>3. Как мы используем ваши данные?</h3>
+                <p>Мы используем ваши персональные данные для следующих целей:</p>
+                <ul>
+                    <li>Оказание услуг – обработка заказов, вывоз мусора, расчет стоимости.</li>
+                    <li>Идентификация и безопасность – предотвращение мошенничества и злоупотреблений.</li>
+                    <li>Обратная связь – уведомления о статусе заказа, изменениях в сервисе.</li>
+                    <li>Обработка платежей – проведение транзакций через платежные системы.</li>
+                    <li>Улучшение сервиса – анализ данных для оптимизации работы приложения.</li>
+                </ul>
+
+                <h3>4. Как мы защищаем ваши данные?</h3>
+                <p>Мы применяем современные меры безопасности, включая:</p>
+                <ul>
+                    <li>Шифрование данных (SSL/TLS) при передаче информации.</li>
+                    <li>Строгий контроль доступа – только уполномоченные сотрудники имеют доступ к данным.</li>
+                    <li>Соответствие стандартам PCI DSS – для защиты платежных данных.</li>
+                    <li>Регулярные проверки безопасности – выявление и устранение уязвимостей.</li>
+                </ul>
+
+                <h3>5. Передача данных третьим лицам</h3>
+                <p>Мы не передаем ваши данные третьим лицам, кроме случаев:</p>
+                <ul>
+                    <li>Платежные системы – для обработки транзакций (например, банки, платежные агрегаторы).</li>
+                    <li>Курьерские службы – если требуется доставка контейнеров или спецтехники.</li>
+                    <li>По требованию закона – в случае запроса государственных органов.</li>
+                </ul>
+
+                <h3>6. Хранение данных</h3>
+                <p>Мы храним ваши данные:</p>
+                <ul>
+                    <li>Пока вы активны в сервисе – пока учетная запись не будет удалена.</li>
+                    <li>По закону – финансовые данные могут храниться дольше в соответствии с требованиями законодательства.</li>
+                </ul>
+
+                <h3>7. Ваши права</h3>
+                <p>Вы имеете право:</p>
+                <ul>
+                    <li>Запросить доступ к своим данным.</li>
+                    <li>Исправить неточности в предоставленной информации.</li>
+                    <li>Удалить аккаунт и персональные данные (кроме случаев, когда хранение обязательно по закону).</li>
+                    <li>Отказаться от рассылки – в настройках или по запросу в поддержку.</li>
+                </ul>
+
+                <h3>8. Изменения в Политике конфиденциальности</h3>
+                <p>Мы можем обновлять эту Политику. Все изменения будут опубликованы здесь, а значительные — уведомлением в приложении или по email.</p>
+
+                <h3>9. Контакты</h3>
+                <p>Если у вас есть вопросы, обращайтесь:</p>
+                <p>Телефон: +79777538377</p>
+
+                <h3>Согласие с Политикой</h3>
+                <p>Используя «Пакет Ушел», вы подтверждаете, что ознакомлены и согласны с этой Политикой конфиденциальности.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно профиля -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeProfileModal()">&times;</span>
+            <h2>Личный профиль</h2>
+            <div class="profile-info">
+                <div class="profile-section">
+                    <h3>Личные данные</h3>
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label for="profileName">Имя:</label>
+                            <input type="text" id="profileName" placeholder="Введите ваше имя">
+                        </div>
+                        <div class="form-group">
+                            <label for="profilePhone">Телефон:</label>
+                            <input type="tel" id="profilePhone" placeholder="+7 (___) ___-__-__">
+                        </div>
+                        <div class="form-group">
+                            <label for="profileEmail">Email:</label>
+                            <input type="email" id="profileEmail" placeholder="example@mail.ru">
+                        </div>
+                        <button type="submit" class="submit-button">Сохранить изменения</button>
+                    </form>
+                </div>
+                <div class="profile-section">
+                    <h3>Мои адреса</h3>
+                    <div id="addressList">
+                        <!-- Здесь будут отображаться сохраненные адреса -->
+                    </div>
+                    <button class="add-address-button" onclick="addNewAddress()">Добавить адрес</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
